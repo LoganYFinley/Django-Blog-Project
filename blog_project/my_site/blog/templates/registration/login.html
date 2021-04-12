@@ -1,0 +1,17 @@
+{% extends 'blog/base.html' %}
+{% block body_block %}
+<div style='background-color: rgb(245 ,245 ,245);' class="p-5 rounded-lg m-3">
+    <h1 class="display-4">Please Login</h1>
+    <p class="lead">Must be a SuperUser, please check with site admin.</p>
+    <hr class="my-4">
+    {% if form.errors %}
+        <p>Your username and password did not match! Please try again.</p>
+    {% endif %}
+    <form action="{% url 'login' %}" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" class="btn btn-success" value="Login">
+        <input type="hidden" name="next" value="{{next}}">
+    </form>
+</div>
+{% endblock %}
